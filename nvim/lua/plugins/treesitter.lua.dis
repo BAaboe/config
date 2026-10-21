@@ -1,0 +1,50 @@
+local Plugin = {'nvim-treesitter/nvim-treesitter'}
+
+Plugin.branch = "main"
+--Plugin.main = 'nvim-treesitter.configs'
+
+Plugin.dependencies = {
+  {'nvim-treesitter/nvim-treesitter-textobjects'}
+}
+
+-- See :help nvim-treesitter-modules
+Plugin.opts = {
+  auto_install = true,
+
+  highlight = {
+    enable = true,
+	disable = { "latex", "conf", "inc" },
+	additional_vim_regex_highlighting = false,
+
+  },
+
+  indent = {
+	disable = {"python"}
+  },
+
+  -- :help nvim-treesitter-textobjects-modules
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
+      }
+    },
+  },
+
+  ensure_installed = {
+    'vim',
+    'vimdoc',
+	'python',
+	'asm',
+	'lua',
+	'rust',
+	'comment'
+  },
+}
+
+return Plugin
